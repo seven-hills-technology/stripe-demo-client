@@ -26,3 +26,8 @@ export const submitAppForm = (stripeTokenId: string) => async (dispatch: Dispatc
 
     console.log(res);
 };
+
+export const getStripeCheckoutSession = (callback: (sessionId: string) => void) => async (dispatch: Dispatch<State>, getState: () => State) => {
+    const res = await stripeService.startStripeCheckoutSession();
+    callback(res.id);
+};
